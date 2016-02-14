@@ -3,6 +3,10 @@
 # For more information about FaceGen, please visit www.FaceGen.com.
 
 mtllib face_mtl
+usemtl Texture0
+usemtl Texture1
+usemtl Texture2
+usemtl Texture3
 o FaceGen
 g eyeL_hi
 s 1
