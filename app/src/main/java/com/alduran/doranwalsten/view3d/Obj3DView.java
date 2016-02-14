@@ -35,8 +35,8 @@ public class Obj3DView extends RendererActivity{
 
     @Override
     public void updateScene() {
-        faceObject3D.rotation().x += 0.5;
-        faceObject3D.rotation().z += 1;
+//        faceObject3D.rotation().x += 0.5;
+//        faceObject3D.rotation().z += 1;
     }
 
 }
