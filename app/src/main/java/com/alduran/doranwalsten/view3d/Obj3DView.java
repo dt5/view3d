@@ -20,7 +20,7 @@ public class Obj3DView extends RendererActivity{
         Light myLight = new Light();
         myLight.position.setZ(150);
         scene.lights().add(myLight);
-        IParser myParser = Parser.createParser(Parser.Type.OBJ, getResources(), "com.alduran.doranwalsten.view3d:raw/teja_obj",true);
+        IParser myParser = Parser.createParser(Parser.Type.OBJ, getResources(), "com.alduran.doranwalsten.view3d:raw/face_obj",true);
         myParser.parse();
 
         faceObject3D = myParser.getParsedObject();
