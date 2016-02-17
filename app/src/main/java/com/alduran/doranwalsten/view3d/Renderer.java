@@ -14,6 +14,8 @@ import org.rajawali3d.math.vector.Vector3;
 import org.rajawali3d.primitives.Sphere;
 import org.rajawali3d.renderer.RajawaliRenderer;
 
+import min3d.parser.ObjParser;
+
 /**
  * Created by ron on 2/17/16.
  */
@@ -37,6 +39,12 @@ public class Renderer extends RajawaliRenderer {
     private Sphere earthSphere;
 
     public void initScene(){
+
+        ObjParser objParser = new ObjParser(mContext.getResources(), mTextureManager, R.raw.face_obj);
+        objParser.parse();
+        BaseObject3D mObject = objParser.getParsedObject();
+        mObject.setLight(mLight);
+        addChild(mObject);
 
         directionalLight = new DirectionalLight(1f, .2f, -1.0f);
         directionalLight.setColor(1.0f, 1.0f, 1.0f);
