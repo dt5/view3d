@@ -1,5 +1,6 @@
 package com.alduran.doranwalsten.view3d;
 
+import android.app.Activity;
 import android.content.ClipData;
 import android.util.Log;
 import android.view.DragEvent;
@@ -20,10 +21,12 @@ public class Obj3DView extends RendererActivity{
     double rotation;
     boolean rot_on = false;
 
+
     @Override
     public void initScene() {
         scene.lights().add(new Light());
         scene.lights().add(new Light());
+
         _glSurfaceView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
