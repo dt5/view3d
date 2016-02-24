@@ -46,7 +46,7 @@ public class Renderer extends RajawaliRenderer {
         directionalLight.setPower(2);
         getCurrentScene().addLight(directionalLight);
 
-        LoaderOBJ objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.face_obj);
+        LoaderOBJ objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.test_obj);
 
         try {
             objParser.parse();
