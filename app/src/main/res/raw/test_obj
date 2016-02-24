@@ -1,6 +1,6 @@
 # Blender v2.76 (sub 0) OBJ File: ''
 # www.blender.org
-mtllib test_obj.mtl
+mtllib test_mtl
 o eyeR_hi
 v -24.680401 38.141094 42.583107
 v -23.847601 38.416492 41.722107
