@@ -2,6 +2,7 @@ package com.alduran.doranwalsten.view3d;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.MotionEvent;
 
@@ -10,10 +11,8 @@ import org.rajawali3d.lights.DirectionalLight;
 import org.rajawali3d.loader.LoaderOBJ;
 import org.rajawali3d.loader.ParsingException;
 import org.rajawali3d.materials.Material;
-import org.rajawali3d.materials.methods.DiffuseMethod;
 import org.rajawali3d.materials.textures.ATexture;
 import org.rajawali3d.materials.textures.Texture;
-import org.rajawali3d.math.vector.Vector3;
 import org.rajawali3d.primitives.Sphere;
 import org.rajawali3d.renderer.RajawaliRenderer;
 
@@ -46,7 +45,8 @@ public class Renderer extends RajawaliRenderer {
         directionalLight.setPower(2);
         getCurrentScene().addLight(directionalLight);
 
-        LoaderOBJ objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.test_obj);
+        LoaderOBJ objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.patrick_obj);
+
 
         try {
             objParser.parse();
@@ -55,6 +55,17 @@ public class Renderer extends RajawaliRenderer {
         }
 
         Object3D mObject = objParser.getParsedObject();
+        mObject.setColor(Color.TRANSPARENT);
+        mObject.setScale(5.f);
+        Material material = new Material();
+        Texture texture = new Texture("Teja",R.drawable.patrick_texture);
+        try {
+            material.addTexture(texture);
+        } catch (ATexture.TextureException error){
+            Log.d("DEBUG", "TEXTURE ERROR");
+        }
+
+        mObject.setMaterial(material);
         getCurrentScene().addChild(mObject);
 
 
