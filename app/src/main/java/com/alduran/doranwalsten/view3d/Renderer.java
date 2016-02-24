@@ -45,7 +45,7 @@ public class Renderer extends RajawaliRenderer {
         directionalLight.setPower(2);
         getCurrentScene().addLight(directionalLight);
 
-        LoaderOBJ objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.patrick_obj);
+        LoaderOBJ objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.face_obj);
 
 
         try {
@@ -55,15 +55,15 @@ public class Renderer extends RajawaliRenderer {
         }
 
         Object3D mObject = objParser.getParsedObject();
-        mObject.setColor(Color.TRANSPARENT);
+//        mObject.setColor(Color.TRANSPARENT);
         mObject.setScale(5.f);
         Material material = new Material();
-        Texture texture = new Texture("Teja",R.drawable.patrick_texture);
-        try {
-            material.addTexture(texture);
-        } catch (ATexture.TextureException error){
-            Log.d("DEBUG", "TEXTURE ERROR");
-        }
+//        Texture texture = new Texture("Teja",R.drawable.patrick_texture);
+//        try {
+//            material.addTexture(texture);
+//        } catch (ATexture.TextureException error){
+//            Log.d("DEBUG", "TEXTURE ERROR");
+//        }
 
         mObject.setMaterial(material);
         getCurrentScene().addChild(mObject);
