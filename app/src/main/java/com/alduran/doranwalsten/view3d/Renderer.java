@@ -2,13 +2,10 @@ package com.alduran.doranwalsten.view3d;
 
 import android.app.Activity;
 import android.content.Context;
-<<<<<<< HEAD
-=======
 import android.graphics.Point;
 import android.opengl.GLU;
 import android.util.Log;
 import android.view.Display;
->>>>>>> 443fe9e67b780a69a72eba7d2336841f9362efff
 import android.view.MotionEvent;
 import android.view.WindowManager;
 
@@ -17,11 +14,8 @@ import org.rajawali3d.lights.DirectionalLight;
 import org.rajawali3d.loader.LoaderOBJ;
 import org.rajawali3d.loader.ParsingException;
 import org.rajawali3d.materials.Material;
-<<<<<<< HEAD
 import org.rajawali3d.materials.textures.Texture;
-=======
 import org.rajawali3d.math.vector.Vector3;
->>>>>>> 443fe9e67b780a69a72eba7d2336841f9362efff
 import org.rajawali3d.primitives.Sphere;
 import org.rajawali3d.renderer.RajawaliRenderer;
 
@@ -87,13 +81,8 @@ public class Renderer extends RajawaliRenderer {
         directionalLight.setPower(2);
         getCurrentScene().addLight(directionalLight);
 
-<<<<<<< HEAD
-
-        LoaderOBJ objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.test_obj);
-=======
         LoaderOBJ objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.test_obj);
 
->>>>>>> 443fe9e67b780a69a72eba7d2336841f9362efff
 
         try {
             objParser.parse();
@@ -101,7 +90,6 @@ public class Renderer extends RajawaliRenderer {
 
         }
 
-<<<<<<< HEAD
         Object3D mObject = objParser.getParsedObject();
         //mObject.setColor(Color.TRANSPARENT);
         mObject.setScale(5.f);
@@ -120,18 +108,16 @@ public class Renderer extends RajawaliRenderer {
             Log.d("DEBUG", "TEXTURE ERROR");
         }
         */
-=======
+
         mObject = objParser.getParsedObject();
 //      mObject.setColor(Color.TRANSPARENT);
         mObject.setScale(1.f);
-        Material material = new Material();
 //        Texture texture = new Texture("Teja",R.drawable.patrick_texture);
 //        try {
 //            material.addTexture(texture);
 //        } catch (ATexture.TextureException error){
 //            Log.d("DEBUG", "TEXTURE ERROR");
 //        }
->>>>>>> 443fe9e67b780a69a72eba7d2336841f9362efff
 
         //mObject.setMaterial(material);
         //getCurrentScene().setBackgroundColor(R.color.colorPrimary);
