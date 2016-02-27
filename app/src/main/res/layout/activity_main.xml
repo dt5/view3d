@@ -9,18 +9,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.alduran.doranwalsten.view3d.MainActivity">
 
-    <!--<org.rajawali3d.surface.RajawaliSurfaceView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:id="@+id/placeholder">-->
-    <!--</org.rajawali3d.surface.RajawaliSurfaceView>-->
-
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:id="@+id/placeholder2"-->
-        <!--android:orientation="horizontal">-->
-    <!--</LinearLayout>-->
+    <fragment android:name = "com.alduran.doranwalsten.view3d.ObjectPickingFragment"
+        android:id = "@+id/face"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout="@layout/rajawali_textureview_fragment" />
 
 
 </RelativeLayout>
