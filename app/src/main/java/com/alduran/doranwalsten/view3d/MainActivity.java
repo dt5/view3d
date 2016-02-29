@@ -1,15 +1,11 @@
 package com.alduran.doranwalsten.view3d;
 
 
-import android.app.FragmentManager;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-
 import android.view.View;
-import android.view.ViewGroup;
-
-import org.rajawali3d.surface.IRajawaliSurface;
-import org.rajawali3d.surface.RajawaliSurfaceView;
+import android.widget.Button;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -24,13 +20,16 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    ObjectPickingFragment curr_face;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FragmentManager manager = getFragmentManager();
+        FragmentManager manager = getSupportFragmentManager();
+        curr_face = (ObjectPickingFragment) manager.findFragmentById(R.id.face);
+
 
         /*
         final RajawaliSurfaceView surface = new RajawaliSurfaceView(this);
@@ -52,6 +51,23 @@ public class MainActivity extends AppCompatActivity {
 //        ((LinearLayout) linearLayout).addView(surface);
         */
 
+    }
+
+    public void translateButtonPressed(View v) {
+        curr_face.switchCameraTranslate();
+        Button not_pressed = (Button) findViewById(R.id.rotate_button);
+        not_pressed.setEnabled(true);
+        Button pressed = (Button) findViewById(R.id.translate_button);
+        pressed.setEnabled(false);
+
+    }
+
+    public void rotateButtonPressed(View v) {
+        curr_face.switchCameraRotate();
+        Button not_pressed = (Button) findViewById(R.id.translate_button);
+        not_pressed.setEnabled(true);
+        Button pressed = (Button) findViewById(R.id.rotate_button);
+        pressed.setEnabled(false);
     }
 
     /*

@@ -3,17 +3,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.alduran.doranwalsten.view3d.MainActivity">
 
-    <fragment android:name = "com.alduran.doranwalsten.view3d.ObjectPickingFragment"
-        android:id = "@+id/face"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout="@layout/rajawali_textureview_fragment" />
+
+        <fragment android:name = "com.alduran.doranwalsten.view3d.ObjectPickingFragment"
+            android:id = "@+id/face"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout="@layout/rajawali_textureview_fragment"/>
 
 
-</RelativeLayout>
+        <RelativeLayout
+            android:layout_width="75dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true">
+
+            <Button
+                android:layout_width="75dp"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:id = "@+id/translate_button"
+                android:text = "Translate"
+                android:textSize = "9dp"
+                android:onClick="translateButtonPressed">
+
+            </Button>
+            <Button
+                android:layout_width="75dp"
+                android:layout_height="50dp"
+                android:id ="@+id/rotate_button"
+                android:layout_above="@id/translate_button"
+                android:text = "Rotate"
+                android:textSize = "9dp"
+                android:background="@color/colorPrimary"
+                android:enabled="false"
+                android:onClick="rotateButtonPressed">
+
+            </Button>
+        </RelativeLayout>
+
+    </RelativeLayout>

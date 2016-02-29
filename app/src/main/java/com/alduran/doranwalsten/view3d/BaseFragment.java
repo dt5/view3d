@@ -8,7 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 
 import org.rajawali3d.IRajawaliDisplay;
 import org.rajawali3d.renderer.RajawaliRenderer;
@@ -21,10 +21,10 @@ import javax.microedition.khronos.opengles.GL10;
 public abstract class BaseFragment extends Fragment implements IRajawaliDisplay, OnClickListener {
 
 
-    protected FrameLayout mLayout;
+    protected RelativeLayout mLayout;
     protected IRajawaliSurface mRajawaliSurface;
     protected IRajawaliSurfaceRenderer mRenderer;
-
+    //protected RajawaliRenderer mRenderer;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +36,7 @@ public abstract class BaseFragment extends Fragment implements IRajawaliDisplay,
         super.onCreateView(inflater, container, savedInstanceState);
 
         // Inflate the view
-        mLayout = (FrameLayout) inflater.inflate(getLayoutID(), container, false);
+        mLayout = (RelativeLayout) inflater.inflate(getLayoutID(), container, false);
 
         // Find the TextureView
         mRajawaliSurface = (IRajawaliSurface) mLayout.findViewById(R.id.rajwali_surface);
@@ -47,6 +47,15 @@ public abstract class BaseFragment extends Fragment implements IRajawaliDisplay,
         onBeforeApplyRenderer();
         applyRenderer();
         return mLayout;
+    }
+
+    public BaseRenderer createRenderer() {
+        return new BaseRenderer(getActivity()) {
+            @Override
+            protected void initScene() {
+
+            }
+        };
     }
 
     protected void onBeforeApplyRenderer() {

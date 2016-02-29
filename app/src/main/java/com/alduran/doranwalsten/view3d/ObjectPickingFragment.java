@@ -1,5 +1,6 @@
 package com.alduran.doranwalsten.view3d;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Point;
 import android.opengl.GLU;
@@ -13,30 +14,33 @@ import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 
+import org.rajawali3d.Camera;
 import org.rajawali3d.Object3D;
 import org.rajawali3d.lights.DirectionalLight;
 import org.rajawali3d.loader.LoaderOBJ;
 import org.rajawali3d.loader.ParsingException;
 import org.rajawali3d.math.vector.Vector3;
+import org.rajawali3d.scene.RajawaliScene;
 import org.rajawali3d.util.OnObjectPickedListener;
 import org.rajawali3d.util.RajLog;
 
 public class ObjectPickingFragment extends BaseFragment implements
     OnTouchListener {
 
+    ObjectPickingRenderer specific_render;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
         ((View) mRajawaliSurface).setOnTouchListener(this);
-        mRenderer = createRenderer();
-
+        //mRenderer = createRenderer();
+        specific_render = createRenderer();
         return mLayout;
     }
 
     @Override
-    public BaseRenderer createRenderer() {
+    public ObjectPickingRenderer createRenderer() {
         return new ObjectPickingRenderer(getActivity());
     }
 
@@ -53,6 +57,19 @@ public class ObjectPickingFragment extends BaseFragment implements
         }
 
         return getActivity().onTouchEvent(event);
+    }
+
+    public void switchCameraRotate() { //Make the camera in rotate mode
+        ObjectPickingRenderer curr_rend = (ObjectPickingRenderer) mRenderer;
+        ArcballCamera arcball = new ArcballCamera(this.getContext(), ((Activity) this.getContext()).findViewById(R.id.rajwali_surface));
+        arcball.setTarget(curr_rend.mObject);
+        arcball.setPosition(0,0,4);
+        RajawaliScene curr_scene = curr_rend.getCurrentScene();
+        curr_scene.replaceAndSwitchCamera(arcball, 1);
+    }
+
+    public void switchCameraTranslate() { //Make the camera in translate mode
+        specific_render.loadStaticCamera();
     }
 
     private final class ObjectPickingRenderer extends BaseRenderer
@@ -95,14 +112,14 @@ public class ObjectPickingFragment extends BaseFragment implements
             mObject = objParser.getParsedObject();
             mObject.setScale(0.01f);
             getCurrentScene().addChild(mObject);
-            /*
+
             ArcballCamera arcball = new ArcballCamera(this.context, ((Activity) this.context).findViewById(R.id.rajwali_surface));
             arcball.setTarget(mObject); //your 3D Object
 
             arcball.setPosition(0, 0, 4); //optional
 
-            getCurrentScene().replaceAndSwitchCamera(getCurrentCamera(), arcball);
-            */
+            //getCurrentScene().replaceAndSwitchCamera(arcball,0);
+
         }
 
         @Override
@@ -111,6 +128,14 @@ public class ObjectPickingFragment extends BaseFragment implements
 
         }
 
+        public void loadStaticCamera() {
+            Camera new_cam = new Camera();
+            //ArcballCamera new_cam = new ArcballCamera(this.context, ((Activity) this.context).findViewById(R.id.rajwali_surface));
+            //new_cam.setTarget(this.mObject); //your 3D Object
+            //new_cam.setPosition(0, 0, 3); //optional
+            RajawaliScene curr_scene = getCurrentScene();
+            curr_scene.replaceAndSwitchCamera(new_cam,0);
+        }
 
         public Vector3 screenToWorld(float x, float y, int viewportWidth, int viewportHeight, float projectionDepth)
         {
